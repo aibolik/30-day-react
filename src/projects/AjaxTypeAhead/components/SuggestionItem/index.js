@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import moment from "moment";
 
 import { Wrapper, Heading, Anchor, Properties } from "./styled";
+
+import { SearchContext } from '../../App';
 
 const Item = ({
   title,
@@ -12,10 +14,16 @@ const Item = ({
   num_comments: commentsCount,
   objectID
 }) => {
+  const search = useContext(SearchContext);
+
+  if (search) {
+    title = title.replace(new RegExp(search, 'ig'), `<strong>$&</strong>`);
+  }
+
   return (
     <Wrapper>
       <Heading>
-        <Anchor href={url}>{title}</Anchor>
+        <Anchor href={url} dangerouslySetInnerHTML={{ __html: title }} />
       </Heading>
       <Properties>
         <li>

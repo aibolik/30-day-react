@@ -27,6 +27,11 @@ export const Anchor = styled.a`
   &:visited {
     color: #9c9c9c;
   }
+
+  strong {
+    font-weight: bold;
+    background: #ff0;
+  }
 `;
 
 export const Properties = styled.ul`
